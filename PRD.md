@@ -12,7 +12,7 @@ Game-Analytics-RAG/
 ├── README.md
 ├── PRD.md
 ├── requirements.txt
-├── Game Analytics_knowledge based.docx
+├── Game_Analytics_Knowledge_Base.docx
 └── game_analytics_db/
 ---
 

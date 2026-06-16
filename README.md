@@ -163,7 +163,60 @@ Users can:
 * Interact through a lightweight web interface
   通过简洁易用的网页界面进行交互
 
+  ### 6. Dynamic Knowledge Base Expansion
+  ### 6. 动态知识库扩展
+
+Users can upload their own game analytics documents (.docx) directly through the web interface.
+
+The system automatically:
+
+- Extracts document content
+- Splits text into semantic chunks using RecursiveCharacterTextSplitter
+- Generates vector embeddings
+- Stores them in ChromaDB
+
+This enables users to continuously expand the knowledge base without modifying source code.
+
+用户可以通过网页界面上传自己的游戏分析文档（.docx）。
+
+系统将自动：
+
+- 提取文档内容
+- 使用 RecursiveCharacterTextSplitter 进行文本切分
+- 生成向量嵌入
+- 写入 ChromaDB
+
+从而实现无需修改代码即可扩展知识库。
+
 ---
+
+### System Architecture
+
+User Question
+↓
+Query Rewriter
+↓
+Domain Filter
+↓
+ChromaDB Retrieval
+↓
+Relevance Filtering
+↓
+Qwen Local LLM
+↓
+Final Answer
+
+Knowledge Expansion Pipeline
+
+User Uploads DOCX
+↓
+Document Parsing
+↓
+RecursiveCharacterTextSplitter
+↓
+Embedding Generation
+↓
+ChromaDB Storage
 
 ## Technology Stack
 
@@ -192,17 +245,11 @@ The current implementation uses:
 
 **Qwen2.5-0.5B-Instruct**
 
-This model was intentionally selected because the project was developed and tested on a consumer laptop with limited computational resources.
+The project intentionally uses Qwen2.5-0.5B-Instruct to enable fully local deployment on consumer-grade hardware.
+本项目选用通义千问Qwen2.5-0.5B-Instruct模型，初衷是实现消费级硬件上的完整本地部署。
 
-由于项目开发和测试环境为普通个人电脑，计算资源有限，因此选择了该轻量级模型。
-
-Larger models such as Qwen 1.5B, 3B, or commercial APIs were not consistently runnable on the available hardware.
-
-更大的模型（如 Qwen 1.5B、3B 或商业 API）在当前硬件环境下无法稳定运行。
-
-As a result:
-
-因此存在以下限制：
+While this improves accessibility and reduces infrastructure costs, it introduces several limitations:
+此举虽提升了方案易用性、降低基础设施成本，但也带来存在以下限制：
 
 * Response quality is sometimes inconsistent.
   回答质量偶尔不够稳定。
@@ -213,9 +260,9 @@ As a result:
 * Complex reasoning performance is constrained.
   复杂推理能力受到模型规模限制。
 
-These limitations stem primarily from model capacity rather than the RAG architecture itself.
+These limitations stem primarily from model capacity rather than the RAG architecture itself. Future versions can easily replace the local model with stronger open-source models or commercial APIs without changing the RAG architecture.
 
-这些问题主要来源于模型参数规模，而非 RAG 架构本身。
+这些问题主要来源于模型参数规模，而非 RAG 架构本身。后续版本无需改动检索增强生成（RAG）整体架构，即可便捷替换本地模型，改用性能更强的开源模型或商用大模型接口。
 
 ---
 
@@ -333,5 +380,3 @@ This would allow more structured business recommendations and improved response 
   如何设计一个 A/B 测试？
 * My paying users decreased this week. What metrics should I check?
   本周付费用户下降了，我应该关注哪些指标？
-* How do I calculate LTV?
-  如何计算 LTV（用户生命周期价值）？

@@ -163,8 +163,8 @@ Users can:
 * Interact through a lightweight web interface
   通过简洁易用的网页界面进行交互
 
-  ### 6. Dynamic Knowledge Base Expansion
-  ### 6. 动态知识库扩展
+### 6. Dynamic Knowledge Base Expansion
+### 6. 动态知识库扩展
 
 Users can upload their own game analytics documents (.docx) directly through the web interface.
 

@@ -371,9 +371,6 @@ This would allow more structured business recommendations and improved response 
 ## Example Questions
 
 ## 示例问题
-
-* What is retention?
-  什么是留存率？
 * My D1 retention dropped from 40% to 25%. What should I investigate?
   我的 D1 留存率从 40% 降到 25%，应该检查哪些指标？
 * How should I design an A/B test?
